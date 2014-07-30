@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickRestore", "QuickRestore\QuickRestore.csproj", "{5D64A6CE-E474-4D20-A3DB-E0E5CD65CCA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{14D448A7-D383-4618-9408-1E7CC2801A47}"
+	ProjectSection(SolutionItems) = preProject
+		QuickRestore\Microsoft.SqlServer.ConnectionInfo.dll = QuickRestore\Microsoft.SqlServer.ConnectionInfo.dll
+		QuickRestore\Microsoft.SqlServer.Management.Sdk.Sfc.dll = QuickRestore\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+		QuickRestore\Microsoft.SqlServer.Smo.dll = QuickRestore\Microsoft.SqlServer.Smo.dll
+		QuickRestore\Microsoft.SqlServer.SmoExtended.dll = QuickRestore\Microsoft.SqlServer.SmoExtended.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D64A6CE-E474-4D20-A3DB-E0E5CD65CCA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D64A6CE-E474-4D20-A3DB-E0E5CD65CCA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D64A6CE-E474-4D20-A3DB-E0E5CD65CCA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D64A6CE-E474-4D20-A3DB-E0E5CD65CCA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

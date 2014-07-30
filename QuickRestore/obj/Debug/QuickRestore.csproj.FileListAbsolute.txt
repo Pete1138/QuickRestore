@@ -1,0 +1,12 @@
+C:\Work\Stuff\QuickRestore\QuickRestore\bin\Debug\QuickRestore.exe.config
+C:\Work\Stuff\QuickRestore\QuickRestore\obj\Debug\QuickRestore.csprojResolveAssemblyReference.cache
+C:\Work\Stuff\QuickRestore\QuickRestore\bin\Debug\QuickRestore.exe
+C:\Work\Stuff\QuickRestore\QuickRestore\bin\Debug\QuickRestore.pdb
+C:\Work\Stuff\QuickRestore\QuickRestore\obj\Debug\QuickRestore.exe
+C:\Work\Stuff\QuickRestore\QuickRestore\obj\Debug\QuickRestore.pdb
+C:\Work\Stuff\QuickRestore\QuickRestore\obj\Debug\QuickRestore.Properties.Resources.resources
+C:\Work\Stuff\QuickRestore\QuickRestore\obj\Debug\QuickRestore.csproj.GenerateResource.Cache
+C:\Work\Stuff\QuickRestore\QuickRestore\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+C:\Work\Stuff\QuickRestore\QuickRestore\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+C:\Work\Stuff\QuickRestore\QuickRestore\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\Work\Stuff\QuickRestore\QuickRestore\bin\Debug\Microsoft.SqlServer.SmoExtended.dll
