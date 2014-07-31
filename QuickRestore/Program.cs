@@ -30,7 +30,7 @@ namespace QuickRestore
                 DatabaseRestore.Restore(BackupPath);
             }
 
-            Console.ReadLine();
+           // Console.ReadLine();
         }
 
         private static void CheckBackupFolderExists()

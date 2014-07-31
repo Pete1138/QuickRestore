@@ -67,6 +67,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="stringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

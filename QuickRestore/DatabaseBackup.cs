@@ -16,7 +16,7 @@ namespace QuickRestore
         {
             var backup = CreateBackup(backupPath);
 
-            ProgressBar.SetupProgressBar();
+            ProgressBar.SetupProgressBar("BACKUP");
 
             var server = new Server(Settings.Default.Server);
             backup.SqlBackupAsync(server);
@@ -54,7 +54,8 @@ namespace QuickRestore
 
         private static void backup_Complete(object sender, ServerMessageEventArgs e)
         {
-            Console.WriteLine(Environment.NewLine + "Backup Done!");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Backup Done!".PadBoth(ProgressBar.Bar.Length));
             Sync.Set();
         }
 
