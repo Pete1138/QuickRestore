@@ -91,8 +91,8 @@ namespace QuickRestore
 
         static void Restore_Complete(object sender, ServerMessageEventArgs e)
         {
-            Console.WriteLine(Environment.NewLine);
-            Console.WriteLine("Restore Done!".PadBoth(ProgressBar.Bar.Length));
+            Console.WriteLine(string.Empty);
+            Console.WriteLine("Restore Complete".PadBoth(ProgressBar.Bar.Length));
             Sync.Set();
         }
 

@@ -5,3 +5,6 @@
 DbBackup/bin/
 DbBackup/obj/Debug/AutoBackup.csproj.FileListAbsolute.txt
 DbBackup/obj/
+*.pdb
+QuickRestore/bin/Release/QuickRestore.vshost.exe.config
+QuickRestore/bin/Release/QuickRestore.vshost.exe.manifest

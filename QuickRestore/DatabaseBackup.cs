@@ -54,8 +54,8 @@ namespace QuickRestore
 
         private static void backup_Complete(object sender, ServerMessageEventArgs e)
         {
-            Console.WriteLine(Environment.NewLine);
-            Console.WriteLine("Backup Done!".PadBoth(ProgressBar.Bar.Length));
+            Console.WriteLine(string.Empty);
+            Console.WriteLine("Backup Complete".PadBoth(ProgressBar.Bar.Length));
             Sync.Set();
         }
 
