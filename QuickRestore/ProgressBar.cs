@@ -4,11 +4,11 @@ namespace QuickRestore
 {
     public class ProgressBar
     {
-        public const string Bar = "********************";
+        public const string Bar = "******************************";
 
         public static void IncrementProgressBar()
         {
-            Console.Write("**");
+            Console.Write("***");
         }
 
         public static void SetupProgressBar(string title)
