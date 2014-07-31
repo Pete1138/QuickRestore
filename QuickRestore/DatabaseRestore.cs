@@ -26,7 +26,7 @@ namespace QuickRestore
             var serverConnection = new ServerConnection(connection);
             var server = new Server(serverConnection);
 
-            ProgressBar.SetupProgressBar("RESTORE");
+            ProgressBar.SetupProgressBar("RESTORE " + Settings.Default.DatabaseName);
 
             restoreDb.SqlRestoreAsync(server);
 
@@ -89,14 +89,14 @@ namespace QuickRestore
             return _sqlConnection;
         }
 
-        static void Restore_Complete(object sender, ServerMessageEventArgs e)
+        private static void Restore_Complete(object sender, ServerMessageEventArgs e)
         {
             Console.WriteLine(string.Empty);
             Console.WriteLine("Restore Complete".PadBoth(ProgressBar.Bar.Length));
             Sync.Set();
         }
 
-        static void Restore_PercentComplete(object sender, PercentCompleteEventArgs e)
+        private static void Restore_PercentComplete(object sender, PercentCompleteEventArgs e)
         {
             ProgressBar.IncrementProgressBar();
         }

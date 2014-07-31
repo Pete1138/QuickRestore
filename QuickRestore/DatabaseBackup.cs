@@ -1,5 +1,4 @@
 ﻿
-using System.Runtime.CompilerServices;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using System;
@@ -16,7 +15,7 @@ namespace QuickRestore
         {
             var backup = CreateBackup(backupPath);
 
-            ProgressBar.SetupProgressBar("BACKUP");
+            ProgressBar.SetupProgressBar("BACKUP " + Settings.Default.DatabaseName);
 
             var server = new Server(Settings.Default.Server);
             backup.SqlBackupAsync(server);
