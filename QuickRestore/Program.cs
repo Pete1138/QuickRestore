@@ -70,8 +70,8 @@ namespace QuickRestore
 
         private static void PrintHelpAndExit()
         {
-            Console.WriteLine(@"-b  <databasename> : perform backup on <databasename>(optional)");
-            Console.WriteLine(@"-r  <databasename> : perform restore of <databasename>(optional)");
+            Console.WriteLine(@"    -b  <databasename> : perform backup on <databasename>(optional)");
+            Console.WriteLine(@"    -r  <databasename> : perform restore of <databasename>(optional)");
             Environment.Exit(0);
         }
 
