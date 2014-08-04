@@ -1,4 +1,5 @@
 ﻿
+using System.IO;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using System;
@@ -10,14 +11,19 @@ namespace QuickRestore
     public class DatabaseBackup
     {
         private static readonly ManualResetEvent Sync = new ManualResetEvent(false);
+        private static Settings _settings;
 
-        public static void Backup(string backupPath)
+        internal static void Backup(Settings settings)
         {
+            _settings = settings;
+
+            var backupPath = Path.Combine(_settings.BackupFolder, _settings.GetBackupFileName());
+
             var backup = CreateBackup(backupPath);
 
-            ProgressBar.SetupProgressBar("BACKUP " + Settings.Default.DatabaseName);
+            ProgressBar.SetupProgressBar("BACKUP " + _settings.DatabaseName);
 
-            var server = new Server(Settings.Default.Server);
+            var server = new Server(_settings.Server);
             backup.SqlBackupAsync(server);
 
             Sync.WaitOne();
@@ -30,12 +36,12 @@ namespace QuickRestore
             var backup = new Backup
             {
                 Action = BackupActionType.Database,
-                Database = Settings.Default.DatabaseName
+                Database = _settings.DatabaseName
             };
 
             backup.Devices.AddDevice(backupPath, DeviceType.File);
-            backup.BackupSetName = Settings.Default.BackupName;
-            backup.BackupSetDescription = Settings.Default.BackupSetDescription;
+            backup.BackupSetName = _settings.GetBackupName();
+            backup.BackupSetDescription = _settings.GetBackupSetDesecription();
 
             backup.Initialize = true;
 

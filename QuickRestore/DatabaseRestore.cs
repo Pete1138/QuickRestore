@@ -1,4 +1,5 @@
 ﻿
+using System.IO;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using System;
@@ -14,19 +15,31 @@ namespace QuickRestore
         //SMO Code http://www.mssqltips.com/sqlservertip/1849/backup-and-restore-sql-server-databases-programmatically-with-smo/
 
         private static readonly ManualResetEvent Sync = new ManualResetEvent(false);
-        private static readonly SqlConnectionStringBuilder SqlConnectionStringBuilder = new SqlConnectionStringBuilder(string.Format("Server={0};Database=Master;Trusted_Connection=True;", Settings.Default.Server));
+        private static SqlConnectionStringBuilder _sqlConnectionStringBuilder;
         private static SqlConnection _sqlConnection;
         private const string SetDatabaseSingleUserCommandText = "ALTER DATABASE {0} SET {1} WITH ROLLBACK IMMEDIATE";
+        private static Settings _settings;
 
-        public static void Restore(string backupPath)
+        internal static void Restore(Settings settings)
         {
+            _settings = settings;
+
+            _sqlConnectionStringBuilder = new SqlConnectionStringBuilder(string.Format("Server={0};Database=Master;Trusted_Connection=True;", _settings.Server));
+
+            var backupPath = Path.Combine(_settings.BackupFolder, _settings.GetBackupFileName());
+
+            if (!File.Exists(backupPath))
+            {
+                throw new FileNotFoundException(string.Format("Cannot find the backup file '{0}'", backupPath));
+            }
+
             var restoreDb = CreateRestore(backupPath);
 
             var connection = SetSingleUser(true);
             var serverConnection = new ServerConnection(connection);
             var server = new Server(serverConnection);
 
-            ProgressBar.SetupProgressBar("RESTORE " + Settings.Default.DatabaseName);
+            ProgressBar.SetupProgressBar("RESTORE " + _settings.DatabaseName);
 
             restoreDb.SqlRestoreAsync(server);
 
@@ -35,14 +48,13 @@ namespace QuickRestore
             SetSingleUser(false);
 
             Cleanup(restoreDb);
-           
         }
 
         private static Restore CreateRestore(string backupPath)
         {
             var restoreDb = new Restore
             {
-                Database = Settings.Default.DatabaseName,
+                Database = _settings.DatabaseName,
                 Action = RestoreActionType.Database
             };
 
@@ -64,11 +76,11 @@ namespace QuickRestore
 
         private static SqlConnection SetSingleUser(bool singleUser)
         {
-            var commandText = string.Format(SetDatabaseSingleUserCommandText, Settings.Default.DatabaseName, singleUser ? "SINGLE_USER" : "MULTI_USER");
+            var commandText = string.Format(SetDatabaseSingleUserCommandText, _settings.DatabaseName, singleUser ? "SINGLE_USER" : "MULTI_USER");
 
             if (_sqlConnection == null)
             {
-                _sqlConnection = new SqlConnection(SqlConnectionStringBuilder.ToString());
+                _sqlConnection = new SqlConnection(_sqlConnectionStringBuilder.ToString());
             }
 
             using (var command = new SqlCommand(commandText, _sqlConnection))

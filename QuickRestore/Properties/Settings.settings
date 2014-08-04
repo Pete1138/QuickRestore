@@ -2,17 +2,17 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QuickRestore.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="BackupFilename" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Client_clean.bak</Value>
+    <Setting Name="BackupFilenameTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}_clean.bak</Value>
     </Setting>
     <Setting Name="BackupFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\SqlBackups</Value>
     </Setting>
-    <Setting Name="BackupName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Client (clean)</Value>
+    <Setting Name="BackupNameTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} (clean)</Value>
     </Setting>
-    <Setting Name="BackupSetDescription" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Sanitized Slate Client Database</Value>
+    <Setting Name="BackupSetDescriptionTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} Database</Value>
     </Setting>
     <Setting Name="DatabaseName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Client</Value>

@@ -8,29 +8,71 @@ namespace QuickRestore
     {
         public static string BackupPath;
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            try
+            {
+                RunProgram(args);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An Error Occurred:");
+                Console.WriteLine(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine(ex.InnerException.Message);
+                }
+
+                Console.WriteLine(ex.StackTrace);
+            }
+        }
+
+        private static void RunProgram(string[] args)
+        {
+
             CheckBackupFolderExists();
 
-            BackupPath = Path.Combine(Settings.Default.BackupFolder, Settings.Default.BackupFilename);
-
-            if (args.Length == 1)
+            if (args.Length >= 1)
             {
-                if (args[0].Contains("?"))
+                var settings = Settings.Default;
+
+                // Optional database name
+                if (args.Length == 2)
                 {
-                    Console.WriteLine(@"Any parameter (apart from '?') performs a backup, otherwise perform a restore");
-                    Environment.Exit(0);
+                    if (args[1].Contains("?"))
+                    {
+                        PrintHelpAndExit();
+                    }
+                    
+                    settings.DatabaseName = args[1];
                 }
-                
-                DatabaseBackup.Backup(BackupPath);
-                
+
+                if (args[0].Contains("b"))
+                {
+                    DatabaseBackup.Backup(settings);
+                }
+                else if (args[0].Contains("r"))
+                {
+                    DatabaseRestore.Restore(settings);
+                }
+                else
+                {
+                    PrintHelpAndExit();
+                }
+
             }
             else
             {
-                DatabaseRestore.Restore(BackupPath);
+                PrintHelpAndExit();
             }
 
-           // Console.ReadLine();
+        }
+
+        private static void PrintHelpAndExit()
+        {
+            Console.WriteLine(@"-b  <databasename> : perform backup on <databasename>(optional)");
+            Console.WriteLine(@"-r  <databasename> : perform restore of <databasename>(optional)");
+            Environment.Exit(0);
         }
 
         private static void CheckBackupFolderExists()

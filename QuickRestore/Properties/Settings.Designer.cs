@@ -25,13 +25,13 @@ namespace QuickRestore.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Client_clean.bak")]
-        public string BackupFilename {
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}_clean.bak")]
+        public string BackupFilenameTemplate {
             get {
-                return ((string)(this["BackupFilename"]));
+                return ((string)(this["BackupFilenameTemplate"]));
             }
             set {
-                this["BackupFilename"] = value;
+                this["BackupFilenameTemplate"] = value;
             }
         }
         
@@ -49,25 +49,25 @@ namespace QuickRestore.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Client (clean)")]
-        public string BackupName {
+        [global::System.Configuration.DefaultSettingValueAttribute("{0} (clean)")]
+        public string BackupNameTemplate {
             get {
-                return ((string)(this["BackupName"]));
+                return ((string)(this["BackupNameTemplate"]));
             }
             set {
-                this["BackupName"] = value;
+                this["BackupNameTemplate"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Sanitized Slate Client Database")]
-        public string BackupSetDescription {
+        [global::System.Configuration.DefaultSettingValueAttribute("{0} Database")]
+        public string BackupSetDescriptionTemplate {
             get {
-                return ((string)(this["BackupSetDescription"]));
+                return ((string)(this["BackupSetDescriptionTemplate"]));
             }
             set {
-                this["BackupSetDescription"] = value;
+                this["BackupSetDescriptionTemplate"] = value;
             }
         }
         
