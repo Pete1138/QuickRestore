@@ -1,3 +1,11 @@
+QuickRestore
+============
+
+Quick Backup and Restore for Dev databases.
+
+POWERSHELL:
+==========
+
 Add this to C:\Users\%user name%\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1 to get shortcuts in powershell:
 
 function qb($database)
@@ -11,7 +19,8 @@ function qr($database)
 }
 
 
----------------------
+USAGE:
+======
 
 To backup default database: 
 > qb 
