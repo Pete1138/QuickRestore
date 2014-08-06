@@ -19,6 +19,7 @@ namespace QuickRestore
         private static SqlConnection _sqlConnection;
         private const string SetDatabaseSingleUserCommandText = "ALTER DATABASE {0} SET {1} WITH ROLLBACK IMMEDIATE";
         private static Settings _settings;
+        private static DateTime _startTime;
 
         internal static void Restore(Settings settings)
         {
@@ -41,6 +42,7 @@ namespace QuickRestore
 
             ProgressBar.SetupProgressBar("RESTORE " + _settings.DatabaseName);
 
+            _startTime = DateTime.Now;
             restoreDb.SqlRestoreAsync(server);
 
             Sync.WaitOne();
@@ -103,8 +105,11 @@ namespace QuickRestore
 
         private static void Restore_Complete(object sender, ServerMessageEventArgs e)
         {
+            var endTime = DateTime.Now;
+            var durationSeconds = endTime.Subtract(_startTime).Seconds;
             Console.WriteLine(string.Empty);
-            Console.WriteLine("Restore Complete".PadBoth(ProgressBar.Bar.Length));
+            var message = string.Format("Restore Complete ({0} seconds)", durationSeconds);
+            Console.WriteLine(message.PadBoth(ProgressBar.Bar.Length));
             Sync.Set();
         }
 

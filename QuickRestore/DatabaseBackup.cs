@@ -12,6 +12,7 @@ namespace QuickRestore
     {
         private static readonly ManualResetEvent Sync = new ManualResetEvent(false);
         private static Settings _settings;
+        private static DateTime _startTime;
 
         internal static void Backup(Settings settings)
         {
@@ -24,6 +25,9 @@ namespace QuickRestore
             ProgressBar.SetupProgressBar("BACKUP " + _settings.DatabaseName);
 
             var server = new Server(_settings.Server);
+
+            _startTime = DateTime.Now;
+
             backup.SqlBackupAsync(server);
 
             Sync.WaitOne();
@@ -59,8 +63,11 @@ namespace QuickRestore
 
         private static void backup_Complete(object sender, ServerMessageEventArgs e)
         {
+            var endTime = DateTime.Now;
+            var durationSeconds = endTime.Subtract(_startTime).Seconds;
             Console.WriteLine(string.Empty);
-            Console.WriteLine("Backup Complete".PadBoth(ProgressBar.Bar.Length));
+            var message = string.Format("Backup Complete ({0} seconds)",durationSeconds);
+            Console.WriteLine(message.PadBoth(ProgressBar.Bar.Length));
             Sync.Set();
         }
 
