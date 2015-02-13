@@ -34,18 +34,25 @@ namespace QuickRestore
 
             var settings = Settings.Default;
 
+            //TODO parse args into a dictionary of <string>/List<string>, e.g. "-b"/"SlatePpi", "-?"/"","-r"/"SlatePpi"/"SlatePpi2.bak"
+            
             if (args.Length >= 1)
             {
 
                 // Optional database name
-                if (args.Length == 2)
+                if (args.Length >= 2)
                 {
                     if (args[1].Contains("?"))
                     {
                         PrintHelpAndExit(settings);
                     }
                     
-                    settings.DefaultDatabaseName = args[1];
+                    settings.DatabaseName = args[1];
+
+                    if (args.Length == 3)
+                    {
+                        settings.RestoreFilename = args[2];
+                    }
                 }
 
                 if (args[0].Contains("b"))
@@ -71,7 +78,7 @@ namespace QuickRestore
 
         private static void PrintHelpAndExit(Settings settings)
         {
-            Console.WriteLine(@"    -b  <databasename> : perform backup on <databasename>(optional - defaults to {0})",settings.DefaultDatabaseName);
+            Console.WriteLine(@"    -b  <databasename> : perform backup on <databasename>(optional - defaults to {0})",settings.DatabaseName);
             Console.WriteLine(@"    -r  <databasename> <filename>: perform restore of <databasename>(optional) (from filename)");
             Environment.Exit(0);
         }

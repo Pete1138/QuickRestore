@@ -22,7 +22,7 @@ namespace QuickRestore
 
             var backup = CreateBackup(backupPath);
 
-            ProgressBar.SetupProgressBar("BACKUP " + _settings.DefaultDatabaseName);
+            ProgressBar.SetupProgressBar("BACKUP " + _settings.DatabaseName);
 
             var server = new Server(_settings.Server);
 
@@ -40,7 +40,7 @@ namespace QuickRestore
             var backup = new Backup
             {
                 Action = BackupActionType.Database,
-                Database = _settings.DefaultDatabaseName
+                Database = _settings.DatabaseName
             };
 
             backup.Devices.AddDevice(backupPath, DeviceType.File);

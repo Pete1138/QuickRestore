@@ -74,12 +74,12 @@ namespace QuickRestore.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("SlatePPI")]
-        public string DefaultDatabaseName {
+        public string DatabaseName {
             get {
-                return ((string)(this["DefaultDatabaseName"]));
+                return ((string)(this["DatabaseName"]));
             }
             set {
-                this["DefaultDatabaseName"] = value;
+                this["DatabaseName"] = value;
             }
         }
         
@@ -92,6 +92,18 @@ namespace QuickRestore.Properties {
             }
             set {
                 this["Server"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RestoreFilename {
+            get {
+                return ((string)(this["RestoreFilename"]));
+            }
+            set {
+                this["RestoreFilename"] = value;
             }
         }
     }

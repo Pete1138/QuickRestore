@@ -27,7 +27,10 @@ namespace QuickRestore
 
             _sqlConnectionStringBuilder = new SqlConnectionStringBuilder(string.Format("Server={0};Database=Master;Trusted_Connection=True;", _settings.Server));
 
-            var backupPath = Path.Combine(_settings.BackupFolder, _settings.GetBackupFileName());
+            var filename = string.IsNullOrWhiteSpace(settings.RestoreFilename)
+                ? _settings.GetBackupFileName()
+                : settings.RestoreFilename;
+            var backupPath = Path.Combine(_settings.BackupFolder, filename);
 
             if (!File.Exists(backupPath))
             {
@@ -40,7 +43,7 @@ namespace QuickRestore
             var serverConnection = new ServerConnection(connection);
             var server = new Server(serverConnection);
 
-            ProgressBar.SetupProgressBar("RESTORE " + _settings.DefaultDatabaseName);
+            ProgressBar.SetupProgressBar("RESTORE " + _settings.DatabaseName);
 
             _startTime = DateTime.Now;
             restoreDb.SqlRestoreAsync(server);
@@ -56,7 +59,7 @@ namespace QuickRestore
         {
             var restoreDb = new Restore
             {
-                Database = _settings.DefaultDatabaseName,
+                Database = _settings.DatabaseName,
                 Action = RestoreActionType.Database
             };
 
@@ -78,7 +81,7 @@ namespace QuickRestore
 
         private static SqlConnection SetSingleUser(bool singleUser)
         {
-            var commandText = string.Format(SetDatabaseSingleUserCommandText, _settings.DefaultDatabaseName, singleUser ? "SINGLE_USER" : "MULTI_USER");
+            var commandText = string.Format(SetDatabaseSingleUserCommandText, _settings.DatabaseName, singleUser ? "SINGLE_USER" : "MULTI_USER");
 
             if (_sqlConnection == null)
             {

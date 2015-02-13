@@ -4,12 +4,12 @@ namespace QuickRestore
 {
     public class ProgressBar
     {
-        public const string Bar = "----------------------------------------";
+        public const string Bar = "----------------------------------------------------------------------";
 
         public static void IncrementProgressBar()
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("****");
+            Console.Write("*******");
             Console.ResetColor();
         }
 
