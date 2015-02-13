@@ -25,7 +25,7 @@ namespace QuickRestore.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{0}_clean.bak")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}.bak")]
         public string BackupFilenameTemplate {
             get {
                 return ((string)(this["BackupFilenameTemplate"]));
@@ -37,7 +37,7 @@ namespace QuickRestore.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\SqlBackups")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\QuickBackups")]
         public string BackupFolder {
             get {
                 return ((string)(this["BackupFolder"]));
@@ -49,7 +49,7 @@ namespace QuickRestore.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{0} (clean)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0} (quickrestore)")]
         public string BackupNameTemplate {
             get {
                 return ((string)(this["BackupNameTemplate"]));
@@ -73,13 +73,13 @@ namespace QuickRestore.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Client")]
-        public string DatabaseName {
+        [global::System.Configuration.DefaultSettingValueAttribute("SlatePPI")]
+        public string DefaultDatabaseName {
             get {
-                return ((string)(this["DatabaseName"]));
+                return ((string)(this["DefaultDatabaseName"]));
             }
             set {
-                this["DatabaseName"] = value;
+                this["DefaultDatabaseName"] = value;
             }
         }
         

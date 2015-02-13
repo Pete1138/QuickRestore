@@ -32,19 +32,20 @@ namespace QuickRestore
 
             CheckBackupFolderExists();
 
+            var settings = Settings.Default;
+
             if (args.Length >= 1)
             {
-                var settings = Settings.Default;
 
                 // Optional database name
                 if (args.Length == 2)
                 {
                     if (args[1].Contains("?"))
                     {
-                        PrintHelpAndExit();
+                        PrintHelpAndExit(settings);
                     }
                     
-                    settings.DatabaseName = args[1];
+                    settings.DefaultDatabaseName = args[1];
                 }
 
                 if (args[0].Contains("b"))
@@ -57,21 +58,21 @@ namespace QuickRestore
                 }
                 else
                 {
-                    PrintHelpAndExit();
+                    PrintHelpAndExit(settings);
                 }
 
             }
             else
             {
-                PrintHelpAndExit();
+                PrintHelpAndExit(settings);
             }
 
         }
 
-        private static void PrintHelpAndExit()
+        private static void PrintHelpAndExit(Settings settings)
         {
-            Console.WriteLine(@"    -b  <databasename> : perform backup on <databasename>(optional)");
-            Console.WriteLine(@"    -r  <databasename> : perform restore of <databasename>(optional)");
+            Console.WriteLine(@"    -b  <databasename> : perform backup on <databasename>(optional - defaults to {0})",settings.DefaultDatabaseName);
+            Console.WriteLine(@"    -r  <databasename> <filename>: perform restore of <databasename>(optional) (from filename)");
             Environment.Exit(0);
         }
 

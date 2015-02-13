@@ -67,6 +67,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="QuickRestoreArguments.cs" />
     <Compile Include="SettingsExtensions.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>

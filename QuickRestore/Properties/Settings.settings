@@ -3,19 +3,19 @@
   <Profiles />
   <Settings>
     <Setting Name="BackupFilenameTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{0}_clean.bak</Value>
+      <Value Profile="(Default)">{0}.bak</Value>
     </Setting>
     <Setting Name="BackupFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\SqlBackups</Value>
+      <Value Profile="(Default)">C:\QuickBackups</Value>
     </Setting>
     <Setting Name="BackupNameTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{0} (clean)</Value>
+      <Value Profile="(Default)">{0} (quickrestore)</Value>
     </Setting>
     <Setting Name="BackupSetDescriptionTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">{0} Database</Value>
     </Setting>
-    <Setting Name="DatabaseName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Client</Value>
+    <Setting Name="DefaultDatabaseName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SlatePPI</Value>
     </Setting>
     <Setting Name="Server" Type="System.String" Scope="User">
       <Value Profile="(Default)">localhost</Value>
